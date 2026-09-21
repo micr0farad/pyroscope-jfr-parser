@@ -43,7 +43,8 @@ fi
 (cd -- "$parser_dir" && go test -mod=readonly ./parser/...)
 (cd -- "$parser_dir/pprof" && go test -mod=readonly ./...)
 cd -- "$alloy_dir"
-go test -mod=mod -p=2 -count=1 -tags=nodocker ./internal/component/pyroscope/java/...
+go test -mod=mod -p=2 -count=1 -tags=nodocker \
+    ./internal/component/pyroscope/java ./internal/component/pyroscope/java/asprof
 GOFLAGS='-mod=mod -p=2' make alloy CGO_ENABLED=0 RELEASE_BUILD=1 \
     SKIP_UI_BUILD=1 SKIP_CODE_GENERATION=1 GOOS=linux GOARCH=amd64 GO_TAGS='' \
     ALLOY_BINARY=build/alloy-linux-amd64 \
